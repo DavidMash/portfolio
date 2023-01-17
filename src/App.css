@@ -1,0 +1,16 @@
+canvas#frequency {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+canvas#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+.control-panel {
+    position: absolute;
+    z-index: 4;
+}
