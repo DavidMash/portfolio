@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Fade from "react-reveal";
+import FadeIn from "./FadeIn";
 import AudioVisualizer from "./AudioVisualizer";
 
 class Header extends Component {
@@ -69,14 +69,14 @@ class Header extends Component {
 
         <div className="row banner">
           <div className="banner-text">
-            <Fade bottom>
+            <FadeIn>
               <h1 className="responsive-headline">{name}</h1>
-            </Fade>
-            <Fade bottom duration={1200}>
+            </FadeIn>
+            <FadeIn>
               <h3>{description}.</h3>
-            </Fade>
+            </FadeIn>
             <hr />
-            <Fade bottom duration={2000}>
+            <FadeIn>
               <ul className="social">
                 <a href={project} className="button btn project-btn">
                   <i className="fa fa-book"></i>Project
@@ -85,7 +85,7 @@ class Header extends Component {
                   <i className="fa fa-github"></i>Github
                 </a>
               </ul>
-            </Fade>
+            </FadeIn>
           </div>
         </div>
 

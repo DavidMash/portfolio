@@ -14,3 +14,21 @@ canvas#background {
     position: absolute;
     z-index: 4;
 }
+
+.slide-left-enter {
+    position: absolute;
+    left: -100%;
+}
+.slide-left-enter-active {
+    position: relative;
+    left: 0;
+    transition: left 1000ms;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms;
+}
