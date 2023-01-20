@@ -1,29 +1,24 @@
 import React, { Component } from "react";
-import FadeIn from "./FadeIn";
 import AudioVisualizer from "./AudioVisualizer";
 
 class Header extends Component {
   constructor() {
     super();
     this.state = {
-      imageNumber: Math.floor(Math.random() * 4)
+      imageNumber: Math.floor(Math.random() * 2)
     };
   }
 
   render() {
     if (!this.props.data) return null;
 
-    const project = this.props.data.project;
-    const github = this.props.data.github;
-    const name = this.props.data.name;
-    const description = this.props.data.description;
+    //const name = this.props.data.name;
+    //const description = this.props.data.description;
 
     return (
       <header id="home">
-        <div>
-          {/* TODO: <image alt={""} src={process.env.PUBLIC_URL + '/images/audio-button.png'} style={{position: "absolute", zIndex: "3", top: "50%", left: "50%"}}/> */}
-          <AudioVisualizer style={{width: "100%", position: "absolute", zIndex: "0", top: "0px", left: "0px"}} />
-          <img alt={""} src={process.env.PUBLIC_URL + '/images/main_images/' + this.state.imageNumber + '.jpeg'} style={{width: "100%", position: "absolute", zIndex: "-3", top: "0px", left: "0px"}}/>
+        <div className="main-visual-container">
+          <AudioVisualizer style={{width: "100%", position: "absolute", zIndex: "0", top: "0px", left: "0px"}} imageNumber={this.state.imageNumber} />
         </div>
 
         <nav id="nav-wrap">
@@ -66,28 +61,6 @@ class Header extends Component {
             </li>
           </ul>
         </nav>
-
-        <div className="row banner">
-          <div className="banner-text">
-            <FadeIn>
-              <h1 className="responsive-headline">{name}</h1>
-            </FadeIn>
-            <FadeIn>
-              <h3>{description}.</h3>
-            </FadeIn>
-            <hr />
-            <FadeIn>
-              <ul className="social">
-                <a href={project} className="button btn project-btn">
-                  <i className="fa fa-book"></i>Project
-                </a>
-                <a href={github} className="button btn github-btn">
-                  <i className="fa fa-github"></i>Github
-                </a>
-              </ul>
-            </FadeIn>
-          </div>
-        </div>
 
         <p className="scrolldown">
           <a className="smoothscroll" href="#about">

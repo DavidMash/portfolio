@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Zmage from "react-zmage";
 import FadeIn from "./FadeIn";
 
 let id = 0;
@@ -7,16 +6,19 @@ class Portfolio extends Component {
   render() {
     if (!this.props.data) return null;
 
-    const projects = this.props.data.projects.map(function (projects) {
-      let projectImage = "images/portfolio/" + projects.image;
+    const projects = this.props.data.projects.map(function (project) {
+      let projectImage = "images/portfolio/" + project.image;
 
       return (
-        <div key={id++} className="columns portfolio-item">
+        <button key={id++} className="columns portfolio-item">
           <div className="item-wrap">
-            <Zmage alt={projects.title} src={projectImage} />
-            <div style={{ textAlign: "center" }}>{projects.title}</div>
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <img className={"project-link-image"} alt={project.title} src={projectImage} />
+              <h5 style={{ textAlign: "center" }}>{project.title}</h5>
+              <div style={{ textAlign: "center" }}>{project.description}</div>
+            </a>
           </div>
-        </div>
+        </button>
       );
     });
 
@@ -25,7 +27,7 @@ class Portfolio extends Component {
         <FadeIn>
           <div className="row">
             <div className="twelve columns collapsed">
-              <h1>Check Out Some of My Works.</h1>
+              <h1>Here is some things I have worked on.</h1>
 
               <div
                 id="portfolio-wrapper"

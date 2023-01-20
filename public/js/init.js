@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery(function($) {
   var time = 380;
   setTimeout(function() {
     $("h1.responsive-headline").fitText(1, { minFontSize: "40px", maxFontSize: "90px" });
@@ -74,45 +74,10 @@ jQuery(document).ready(function($) {
       randomize: false
     });
 
-    $("form#contactForm button.submit").click(function() {
-      $("#image-loader").fadeIn();
-
-      var contactName = $("#contactForm #contactName").val();
-      var contactEmail = $("#contactForm #contactEmail").val();
+    $("form#contactForm button.submit").on("click", function() {
       var contactSubject = $("#contactForm #contactSubject").val();
       var contactMessage = $("#contactForm #contactMessage").val();
-
-      var data =
-        "contactName=" +
-        contactName +
-        "&contactEmail=" +
-        contactEmail +
-        "&contactSubject=" +
-        contactSubject +
-        "&contactMessage=" +
-        contactMessage;
-
-      $.ajax({
-        type: "POST",
-        url: "inc/sendEmail.php",
-        data: data,
-        success: function(msg) {
-          // Message was sent
-          if (msg == "OK") {
-            $("#image-loader").fadeOut();
-            $("#message-warning").hide();
-            $("#contactForm").fadeOut();
-            $("#message-success").fadeIn();
-          }
-          // There was an error
-          else {
-            $("#image-loader").fadeOut();
-            $("#message-warning").html(msg);
-            $("#message-warning").fadeIn();
-          }
-        }
-      });
-      return false;
+      window.open('mailto:davidmash134@gmail.com?subject=' + contactSubject + '&body=' + contactMessage);
     });
   }, time);
 });

@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 function AudioVisualizer(props) {
     const [audioElement, setAudioElement] = useState(null);
     const [loaded, setLoaded] = useState(false);
+    const canvasAreaRef = useRef(null);
     const fileInputRef = useRef(null);
     const frequencyRef = useRef(null);
     const backgroundRef = useRef(null);
@@ -23,13 +24,13 @@ function AudioVisualizer(props) {
                 if(audioElement && scrubBarRef.current) {
                     let currentTime = audioElement.currentTime;
                     let duration = audioElement.duration;
-                    let scrubBarValue = (currentTime/duration)*100;
+                    let scrubBarValue = (currentTime/duration) * 100;
                     scrubBarRef.current.value = scrubBarValue;
                 }
             }
 
             audioElement.addEventListener("timeupdate", updateScrubBar);
-            audioElement.src = URL.createObjectURL(fileInputRef.current.files[0]);
+            audioElement.src = (fileInputRef.current && fileInputRef.current.files[0])? URL.createObjectURL(fileInputRef.current.files[0]): process.env.PUBLIC_URL + '/music/song.mp3';
             audioElement.addEventListener("loadeddata", () => {
                 setLoaded(true);
             });
@@ -41,16 +42,20 @@ function AudioVisualizer(props) {
             backgroundRef.current.willReadFrequently = true;
             const frequencyCtx = frequencyRef.current.getContext("2d");
             const smudgeCtx = backgroundRef.current.getContext("2d");
-            backgroundRef.current.width = window.innerWidth;
-            backgroundRef.current.height = window.innerHeight;
-            frequencyRef.current.width = window.innerWidth;
-            frequencyRef.current.height = window.innerHeight;
+            backgroundRef.current.style.width ='100%';
+            backgroundRef.current.style.height='100%';
+            frequencyRef.current.style.width ='100%';
+            frequencyRef.current.style.height='100%';
+            backgroundRef.current.width  = canvasAreaRef.current.offsetWidth;
+            backgroundRef.current.height = canvasAreaRef.current.offsetHeight;
+            frequencyRef.current.width  = canvasAreaRef.current.offsetWidth;
+            frequencyRef.current.height = canvasAreaRef.current.offsetHeight;
 
-            window.addEventListener("resize", () => {
-                backgroundRef.current.width = window.innerWidth;
-                backgroundRef.current.height = window.innerHeight;
-                frequencyRef.current.width = window.innerWidth;
-                frequencyRef.current.height = window.innerHeight;
+            canvasAreaRef.current.addEventListener("resize", () => {
+                backgroundRef.current.width  = canvasAreaRef.current.offsetWidth;
+                backgroundRef.current.height = canvasAreaRef.current.offsetHeight;
+                frequencyRef.current.width  = canvasAreaRef.current.offsetWidth;
+                frequencyRef.current.height = canvasAreaRef.current.offsetHeight;
             });
 
             let ultimatePeak = 1;
@@ -80,7 +85,7 @@ function AudioVisualizer(props) {
                     let verticalCenter = frequencyCtx.canvas.height / 2;
                     let zeroAdjust = 0;
                     for (let i = dataArray.length - 1; i >= 0; i--) {
-                        if (dataArray[i] !== 0) break;
+                        if (dataArray[i] - 20 > 0) break;
                         zeroAdjust++;
                     }
                     let barWidth = ((frequencyCtx.canvas.width / dataArray.length)) / 2;
@@ -97,7 +102,7 @@ function AudioVisualizer(props) {
                     midFreqAvgAmplitude = getAverageAmplitude(dataArray, dataArray.length / 16, 3 * dataArray.length / 16);
                     lowFreqAvgAmplitude = getAverageAmplitude(dataArray, 0, dataArray.length / 16);
                     lowFreqPeakAmplitude = getPeakAmplitude(dataArray, 0, dataArray.length / 16);
-                    frequencyCtx.globalAlpha = Math.abs(0.2 - (avgAmplitude / 100)) + 0.1;
+                    frequencyCtx.globalAlpha = (Math.abs(0.2 - (avgAmplitude / 200)) + 0.1) / 2;
                 }
 
                 //smudge effect
@@ -105,7 +110,7 @@ function AudioVisualizer(props) {
                 if (rotateSmudge) {
                     smudgeCtx.drawImage(frequencyCtx.canvas, 0, 0);
                     rotationAngle = (rotationAngle + 1) % 360;
-                    smudgeVelocity = (lowFreqAvgAmplitude) / 60 * (midFreqAvgAmplitude < highFreqAvgAmplitude)? -1: 1;
+                    smudgeVelocity = (lowFreqAvgAmplitude) / 5 * (midFreqAvgAmplitude < highFreqAvgAmplitude * 2)? -1: 1;
                     // Save the current canvas state
                     smudgeCtx.save();
                     // Rotate the canvas
@@ -119,13 +124,13 @@ function AudioVisualizer(props) {
                     smudgeCtx.globalAlpha = Math.abs(0.04 - (avgAmplitude / 4000));
                 } else {
                     rotationAngle = 0;
-                    var imageDataTop = smudgeCtx.getImageData(0, 0, smudgeCtx.canvas.width, ((smudgeCtx.canvas.height / 2) - (smudgeCtx.canvas.height / 64)));
-                    var imageDataBottom = smudgeCtx.getImageData(0, ((smudgeCtx.canvas.height / 2) + (smudgeCtx.canvas.height / 64)), smudgeCtx.canvas.width, smudgeCtx.canvas.height);
+                    var imageDataTop = smudgeCtx.getImageData(0, 0, smudgeCtx.canvas.width, smudgeCtx.canvas.height / 2);
+                    var imageDataBottom = smudgeCtx.getImageData(0, smudgeCtx.canvas.height / 2, smudgeCtx.canvas.width, smudgeCtx.canvas.height);
                     smudgeCtx.clearRect(0, 0, smudgeCtx.canvas.width, smudgeCtx.canvas.height);
                     smudgeCtx.globalAlpha = 0.5 - (avgAmplitude / 100);
-                    smudgeVelocity = (avgAmplitude < 10)? avgAmplitude * 2: ((lowFreqPeakAmplitude >= ultimatePeak && lowFreqAvgAmplitude * 0.6 > midFreqAvgAmplitude + highFreqAvgAmplitude)? -1: 1) * avgAmplitude / 4;
+                    smudgeVelocity = (avgAmplitude < 10)? avgAmplitude * 2: ((lowFreqPeakAmplitude >= ultimatePeak && lowFreqAvgAmplitude * 0.5 > midFreqAvgAmplitude + highFreqAvgAmplitude)? -1: 1) * avgAmplitude / 4;
                     smudgeCtx.putImageData(imageDataTop, 0, -smudgeVelocity);
-                    smudgeCtx.putImageData(imageDataBottom, 0, ((smudgeCtx.canvas.height / 2) + (smudgeCtx.canvas.height / 64)) + smudgeVelocity);
+                    smudgeCtx.putImageData(imageDataBottom, 0, (smudgeCtx.canvas.height / 2) + smudgeVelocity);
                     smudgeCtx.drawImage(frequencyCtx.canvas, 0, 0);
                 }
             }
@@ -214,19 +219,13 @@ function AudioVisualizer(props) {
         setAudioElement(new Audio());
     }
 
+    //TODO: remove the following line when the scrub bar is set to be active
+    // eslint-disable-next-line
     function updatePlayback() {
         if(audioElement && scrubBarRef.current) {
             let scrubBarValue = scrubBarRef.current.value;
             let currentTime = (scrubBarValue / 100) * audioElement.duration;
             audioElement.currentTime = currentTime;
-        }
-    }
-
-    function stopAudio() {
-        if (audioElement) {
-            audioElement.pause();
-            audioElement.currentTime = 0;
-            setPlay(false);
         }
     }
 
@@ -242,18 +241,21 @@ function AudioVisualizer(props) {
         }
     }
 
+    if (!audioElement) {
+        loadAudio();
+    }
+
     return (
-        <div style={props.style}>
+        <div style={props.style} className='canvas-area no-select' ref={canvasAreaRef} onClick={togglePlay}>
             <br />
             <br />
-            <div className="control-panel">
-                <input type="file" ref={fileInputRef} onChange={loadAudio} />
-            </div>
             {loaded?
             <div className="control-panel">
-                <button onClick={togglePlay}>{play ? 'Pause' : 'Play'}</button>
-                <button onClick={stopAudio}>Stop</button>
-                <input ref={scrubBarRef} type="range" min="0" max="100" defaultValue={0} id="scrub-bar" disabled={!loaded} onChange={updatePlayback()}/>
+                {play?
+                <img alt={""} src={process.env.PUBLIC_URL + '/images/pause-button.png'} className={"pause-button"} />
+                :
+                <img alt={""} src={process.env.PUBLIC_URL + '/images/play-button.png'} className={"play-button"} />
+                }
             </div>
             :
             <></>
@@ -261,6 +263,13 @@ function AudioVisualizer(props) {
             <br />
             <canvas ref={frequencyRef} id="frequency" />
             <canvas ref={backgroundRef} id="background" />
+            <img alt={""} src={process.env.PUBLIC_URL + '/images/main_images/' + props.imageNumber + '.jpeg'} style={{objectFit: "cover", height: "100%", minWidth: "100%", width: "auto", position: "absolute", zIndex: "-3", top: "0px", left: "0px"}}/>
+            {/* TODO: Make a nice way for users to upload their own audio files and scrub through
+            <div className='bottom-controls'>
+                <input ref={scrubBarRef} type="range" min="0" max="100" defaultValue={0} id="scrub-bar" disabled={!loaded} onChange={() => {updatePlayback();}}/>
+                <input type="file" ref={fileInputRef} onChange={loadAudio} />
+            </div>
+            */}
         </div>
     );
 }

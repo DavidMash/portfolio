@@ -305,6 +305,7 @@ ul#nav li.current a { color: #fe6928; }
 	font-weight: normal;
    position: relative;
 	top: -36px;
+   margin-bottom: 36px;
 }
 .bar-expand {
    position: absolute;
@@ -426,11 +427,15 @@ ul#nav li.current a { color: #fe6928; }
 }
 
 /* Portfolio Content */
-#portfolio-wrapper .columns { margin-bottom: 36px; }
+#portfolio-wrapper .columns {
+   margin-bottom: 36px;
+   width: 100%;
+}
 .portfolio-item .item-wrap {
    background: #fff;
    overflow: hidden;
    position: relative;
+   padding: 12px;
 
    -webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;

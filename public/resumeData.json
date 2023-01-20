@@ -1,184 +1,129 @@
 {
   "main": {
-    "name":"Nordic-Giant Project",
-    "description":"I am a web development engineer and I use react and vue.js to develop pages. This project is a resume template that can be used as the project home page or resume page",
-    "image":"profilepic.jpg",
-    "bio":"Use this bio section as your way of describing yourself and saying what you do, what technologies you like to use or feel most comfortable with, describing your personality, or whatever else you feel like throwing in.",
-    "contactmessage":"Here is where you should write your message to readers to have them get in contact with you.",
-    "email": "youremailhere@gmail.com",
-    "phone": "555-555-5555",
+    "name":"David Mash",
+    "description":"",
+    "image":"profile-pic.png",
+    "bio":"",
+    "contactmessage":"",
+    "email": "davidmash134@gmail.com",
+    "phone": "",
     "github":"https://github.com/nordicgiant2/react-nice-resume",
     "project":"https://github.com/nordicgiant2/react-nice-resume",
-    "address":{
-      "street":"(Your Street)",
-      "city":"(Your City)",
-      "state":"(Your State)",
-      "zip": "(Your Zip/Postal Code)"
-    },
-    "website": "http://www.timbakerdev.com",
-    "resumedownload":"http://timbakerdev.com",
+    "resumedownload":"./resume/David Mash Resume - Spring 2023.pdf",
+    "linkedin":"https://www.linkedin.com/in/david-mash-2a9a8a17b/",
     "social":[
       {
         "name":"facebook",
-        "url":"https://github.com/nordicgiant2/react-nice-resume",
+        "url":"https://www.facebook.com/people/David-Mash/100009451343851/",
         "className":"fa fa-facebook"
       },
       {
-        "name":"twitter",
-        "url":"http://twitter.com",
-        "className":"fa fa-twitter"
-      },
-      {
         "name":"linkedin",
-        "url":"https://www.linkedin.com/in/tim-baker-8420009a/",
+        "url":"https://www.linkedin.com/in/david-mash-2a9a8a17b/",
         "className":"fa fa-linkedin"
       },
       {
         "name":"instagram",
-        "url":"http://instagram.com/tbaker_x",
+        "url":"https://www.instagram.com/davidmash134/",
         "className":"fa fa-instagram"
       },
       {
         "name":"github",
-        "url":"https://github.com/nordicgiant2/react-nice-resume",
+        "url":"https://github.com/DavidMash",
         "className":"fa fa-github"
       }
     ]
   },
   "resume":{
-    "skillmessage":"Here you can create a short write-up of your skills to show off to employers",
+    "skillmessage":"Here are some of my important skills related to software engineering and project delivery.",
     "education":[
       {
-        "school":"University?",
-        "degree":"Masters in Beer tasting",
-        "graduated":"April 2017",
-        "description":"Describe your experience at school, what you learned, what useful skills you have acquired etc."
+        "school":"University of Pittsburgh - School of Computing and Information",
+        "degree":"Bachelor of Science in Computer Science",
+        "graduated":"2022",
+        "description":"I graduated with a 3.96 GPA and internship experience. This degree gave me an invaluable, traditional foundation in software engineering."
       },
       {
-        "school":"School #1 Maybe College?",
-        "degree":"What did you study 101",
-        "graduated":"March 2013",
-        "description":"Describe your experience at school, what you learned, what useful skills you have acquired etc."
+        "school":"University of Pittsburgh - Dietrich School of Arts and Science",
+        "degree":"Bachelor of Arts in Music Composition",
+        "graduated":"2022",
+        "description":"My passion for music is unbounded. At school, I found ways to combine computer science and music. I created generative music programs, live-coded compositions, and researched artifical intelligence for music and art."
       }
     ],
     "work":[
       {
-        "company":"Awesome Design Studio",
-        "title":"Senior UX God ",
-        "years":"March 2018 - Present",
-        "description":"Describe work, special projects, notable achievements, what technologies you have been working with, and anything else that would be useful for an employer to know."
+        "company":"Conduction Inc.",
+        "title":"Lead Software Engineer ",
+        "years":"Spring 2022 - Present",
+        "description":"As a software engineer at Conduction Inc, a music technology startup in Pittsburgh, PA, I have led the engineering and implementation of cutting-edge music technology using React and NodeJS. This position exercised my ability to independently manage a project from scratch while learning and applying new technologies on the fly."
       },
       {
-        "company":"Super Cool Studio",
-        "title":"Junior bug fixer",
-        "years":"March 2017 - February 2018",
-        "description":"Describe work, special projects, notable achievements, what technologies you have been working with, and anything else that would be useful for an employer to know."
+        "company":"Erie Insurance",
+        "title":"Software Engineer Intern",
+        "years":"Spring 2021 - Spring 2022",
+        "description":"This role gave me traditional experience as a software engineer. I worked on a DevOps team as a full-stack engineer to create an internal website writing in Python and Javascript. Admins have used this website throughout the company to run tests and verify vital information across the company’s many servers."
+      },
+      {
+        "company":"University of Pittsburgh",
+        "title":"Computer Science Tutor",
+        "years":"Fall 202 - Spring 2021",
+        "description":"I tutored many students taking courses in Java, Python, assembly language, algorithms, and system software. Through tutoring others, I developed a deep and holistic understanding of computer science fundamentals myself."
       }
     ],
     "skills":[
       {
-        "name":"Python",
-        "level":"60%"
+        "name":"Software Engineering ",
+        "level":"87%"
       },
       {
-        "name":"VueJs",
-        "level":"55%"
+        "name":"Web Development with React",
+        "level":"98%"
       },
       {
-        "name":"ReactJs",
-        "level":"50%"
+        "name":"Javascript, HTML, and CSS",
+        "level":"98%"
       },
       {
-        "name":"CSS",
-        "level":"90%"
+        "name":"Object-Oriented Programming",
+        "level":"89%"
       },
       {
-        "name":"PHP",
-        "level":"80%"
+        "name":"User Experience Design",
+        "level":"73%"
       },
       {
-        "name":"Swift",
-        "level":"50%"
+        "name":"Project Management",
+        "level":"78%"
       },
       {
-        "name":"JAVA",
-        "level":"80%"
+        "name":"Quality Assurance",
+        "level":"73%"
+      },
+      {
+        "name":"Music, Art, and Creative Work",
+        "level":"92%"
       }
     ]
   },
   "portfolio":{
     "projects": [
       {
-        "title":"Canadian Wanderlust",
-        "category":"My Travel Blog for my post-university travels",
-        "image":"01.jpg",
-        "url":"https://www.canadianwanderlust.com"
+        "title":"Conduction Inc.",
+        "image":"conduction-logo.png",
+        "link":"https://www.linkedin.com/company/conduction-live/",
+        "description":"I led the software engineering at this music tech start up."
       },
       {
-        "title":"Fury Fighting Gear",
-        "category":"(offline now) A fighting gear company I started",
-        "image":"02.jpg",
-        "url":"http://www.timbakerdev.com"
+        "title":"Paper on AI and Music",
+        "image":"copy-writing.png",
+        "link":"./resume/David Mash Writing Sample.pdf",
+        "description":"I wrote this paper arguing about machine learning's usage in the art of generative music."
       },
       {
-        "title":"Original Thai Food",
-        "category":"Website I built for a restaurant I like in Thailand",
-        "image":"03.jpg",
-        "url":"http://www.timbakerdev.com/originalthaifood.github.io"
-      },
-      {
-        "title":"Resume Website",
-        "category":"A React based resume website template",
-        "image":"04.jpg",
-        "url":"http://www.timbakerdev.com"
-      },
-      {
-        "title":"Smirkspace",
-        "category":"(MVP Only) A React and Meteor based chat University project.",
-        "image":"05.jpg",
-        "url":"http://www.smirkspace.com"
-      },
-      {
-        "title":"Canadian Wanderlust",
-        "category":"My Travel Blog for my post-university travels",
-        "image":"06.jpg",
-        "url":"https://www.canadianwanderlust.com"
-      },
-      {
-        "title":"Fury Fighting Gear",
-        "category":"(offline now) A fighting gear company I started",
-        "image":"01.jpg",
-        "url":"http://www.timbakerdev.com"
-      },
-      {
-        "title":"Original Thai Food",
-        "category":"Website I built for a restaurant I like in Thailand",
-        "image":"02.jpg",
-        "url":"http://www.timbakerdev.com/originalthaifood.github.io"
-      },
-      {
-        "title":"Original Thai Food",
-        "category":"Website I built for a restaurant I like in Thailand",
-        "image":"03.jpg",
-        "url":"http://www.timbakerdev.com/originalthaifood.github.io"
-      },
-      {
-        "title":"Resume Website",
-        "category":"A React based resume website template",
-        "image":"04.jpg",
-        "url":"http://www.timbakerdev.com"
-      },
-      {
-        "title":"Smirkspace",
-        "category":"(MVP Only) A React and Meteor based chat University project.",
-        "image":"05.jpg",
-        "url":"http://www.smirkspace.com"
-      },
-      {
-        "title":"Canadian Wanderlust",
-        "category":"My Travel Blog for my post-university travels",
-        "image":"06.jpg",
-        "url":"https://www.canadianwanderlust.com"
+        "title":"Generative Music Album",
+        "image":"music.png",
+        "link":"https://soundcloud.com/david-mash-299129952/sets/engineered",
+        "description":"After writing about machine learning and AI uses in music, I created my own generative music composing AI and used it to create this 12 track collection that I posted on my personal SoundCloud page."
       }
     ]
   }

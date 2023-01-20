@@ -10,9 +10,64 @@ canvas#background {
     left: 0;
     z-index: 2;
 }
+.canvas-area {
+    width: 100%;
+    max-height: max-content;
+    height: 100%;
+    position: relative;
+}
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+.vertical-center {
+    margin: 0;
+    position: sticky;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.play-button {
+    z-index: 4;
+    opacity: 0.4;
+    width: 120px;
+    height: 120px;
+    transition: opacity 300ms;
+}
+.play-button:hover {
+    opacity: 0.7;
+    transition: opacity 300ms;
+}
+.pause-button {
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 300ms;
+    width: 120px;
+    height: 120px;
+}
+.pause-button:hover {
+    opacity: 0.7;
+    transition: opacity 300ms;
+}
 .control-panel {
+    position: sticky;
+    z-index: 4;
+    margin: 0;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.bottom-controls {
     position: absolute;
     z-index: 4;
+    margin: 0;
+    bottom: 90px;
+    width: 100%;
 }
 
 .slide-left-enter {
@@ -31,4 +86,20 @@ canvas#background {
 .fade-enter-active {
     opacity: 1;
     transition: opacity 1000ms;
+}
+
+.project-link-image {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.follow-cursor-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
 }
